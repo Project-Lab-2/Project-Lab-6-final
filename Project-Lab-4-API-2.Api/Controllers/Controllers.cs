@@ -3,6 +3,7 @@ using Project.Lab4.API2.Domain.Catalog;
 
 namespace Project.Lab4.API2.Api.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class CatalogController : ControllerBase
@@ -52,4 +53,31 @@ namespace Project.Lab4.API2.Api.Controllers
             return NoContent();
         }
     }
+
+    public class Rating
+    {
     }
+
+    public class Item
+    {
+        private string v1;
+        private string v2;
+        private string v3;
+        private decimal v4;
+
+        public Item(string v1, string v2, string v3, decimal v4)
+        {
+            this.v1 = v1;
+            this.v2 = v2;
+            this.v3 = v3;
+            this.v4 = v4;
+        }
+
+        public int Id { get; set; }
+
+        internal void AddRating(Rating rating)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

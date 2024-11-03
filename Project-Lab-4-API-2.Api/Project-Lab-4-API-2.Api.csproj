@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Project-Lab-4-API-2.Domain\Project-Lab-4-API-2.Domain.csproj" />
+    <ProjectReference Include="..\Project-Lab-4-API-2.Data\Project-Lab-4-API-2.Data.csproj" />
   </ItemGroup>
 
 </Project>
