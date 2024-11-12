@@ -1,4 +1,4 @@
-﻿using Project.Lab4.API2.Domain.Catalog; 
+﻿using Project.Lab4.API2.Domain.Catalog;
 using Microsoft.EntityFrameworkCore;
 
 namespace Project.Lab4.API2.Data
@@ -11,5 +11,11 @@ namespace Project.Lab4.API2.Data
         }
 
         public DbSet<Item> Items { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            DbInitializer.Initialize(builder);
+        }
     }
 }

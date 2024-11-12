@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Project.Lab4.API2.Data;
 
-namespace Project.Lab4.API2.Domain.Catalog
+namespace Project.Lab4.API2
 {
     public class Startup
     {
@@ -20,6 +22,12 @@ namespace Project.Lab4.API2.Domain.Catalog
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.AddDbContext<StoreContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("Project-Lab-4-API-2.Data")));
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,7 +36,7 @@ namespace Project.Lab4.API2.Domain.Catalog
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "jet.piranha.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project.Lab4.API2 v1"));
             }
 
             app.UseHttpsRedirection();
