@@ -21,17 +21,17 @@ namespace Project.Lab4.API2.Api.Controllers
             var items = _db.Items.ToList();
             return Ok(_db.Items);
         }
-
         [HttpGet("{id:int}")]
         public IActionResult GetItem(int id)
         {
-            var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m)
+            var item = _db.Items.Find(id);
+            if (item == null)
             {
-                Id = id
-            };
-
+                return NotFound();
+            }
             return Ok(item);
         }
+
 
         [HttpPost]
         public IActionResult Post(Item item)
