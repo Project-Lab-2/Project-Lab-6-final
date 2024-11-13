@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Project.Lab4.API2.Domain.Catalog;
 using Project.Lab4.API2.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Project.Lab4.API2.Api.Controllers
 {
@@ -57,10 +59,25 @@ namespace Project.Lab4.API2.Api.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, Item item)
+        public IActionResult PutItem(int id, [FromBody] Item item)
         {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            if (_db.Items.Find(id) == null)
+            {
+                return NotFound();
+            }
+
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+
             return NoContent();
         }
+
+
     }
 }
 
