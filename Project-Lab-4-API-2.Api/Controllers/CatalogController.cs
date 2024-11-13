@@ -19,8 +19,9 @@ namespace Project.Lab4.API2.Api.Controllers
         public IActionResult GetItems()
         {
             var items = _db.Items.ToList();
-            return Ok(_db.Items);
+            return Ok(items);
         }
+
         [HttpGet("{id:int}")]
         public IActionResult GetItem(int id)
         {
@@ -32,22 +33,25 @@ namespace Project.Lab4.API2.Api.Controllers
             return Ok(item);
         }
 
-
         [HttpPost]
         public IActionResult Post(Item item)
         {
-            return Created("/catalog/42", item);
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return Created($"/catalog/{item.Id}", item);
         }
 
         [HttpPost("{id:int}/ratings")]
         public IActionResult PostRating(int id, [FromBody] Rating rating)
         {
-            var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m)
+            var item = _db.Items.Find(id);
+            if (item == null)
             {
-                Id = id
-            };
+                return NotFound();
+            }
 
             item.AddRating(rating);
+            _db.SaveChanges();
 
             return Ok(item);
         }
@@ -58,31 +62,5 @@ namespace Project.Lab4.API2.Api.Controllers
             return NoContent();
         }
     }
-
-    public class Rating
-    {
-    }
-
-    public class Item
-    {
-        private string v1;
-        private string v2;
-        private string v3;
-        private decimal v4;
-
-        public Item(string v1, string v2, string v3, decimal v4)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
-            this.v4 = v4;
-        }
-
-        public int Id { get; set; }
-
-        internal void AddRating(Rating rating)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
+
