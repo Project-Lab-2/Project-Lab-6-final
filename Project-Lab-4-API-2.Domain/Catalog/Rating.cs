@@ -1,3 +1,5 @@
+using Project.Lab4.API2.Domain.Catalog;
+
 namespace Project.Lab4.API2.Domain.Catalog
 {
     public class Rating
