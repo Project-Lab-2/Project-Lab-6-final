@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Project.Lab4.API2.Domain.Catalog
+namespace Project.Lab4.API2
 {
     public class Program
     {

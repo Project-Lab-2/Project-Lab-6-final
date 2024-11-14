@@ -1,6 +1,7 @@
-@Project_Lab_4_API_2.Api_HostAddress = http://localhost:5288
+@Project_Lab_4_API_2_Api_HostAddress = http://localhost:5288
 
-GET {{Project_Lab_4_API_2.Api_HostAddress}}/weatherforecast/
+GET {{Project_Lab_4_API_2_Api_HostAddress}}/catalog
 Accept: application/json
+
 
 ###
