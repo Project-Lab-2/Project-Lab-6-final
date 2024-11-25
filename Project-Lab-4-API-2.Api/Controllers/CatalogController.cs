@@ -2,10 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Project.Lab4.API2.Domain.Catalog;
 using Project.Lab4.API2.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 namespace Project.Lab4.API2.Api.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class CatalogController : ControllerBase
@@ -77,6 +80,7 @@ namespace Project.Lab4.API2.Api.Controllers
             return NoContent();
         }
         [HttpDelete("{id:int}")]
+        [Authorize("delete:catalog")]
         public IActionResult DeleteItem(int id)
         {
             var item = _db.Items.Find(id);

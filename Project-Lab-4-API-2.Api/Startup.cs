@@ -27,7 +27,15 @@ namespace Project.Lab4.API2
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("Project-Lab-4-API-2.Data")));
 
-
+services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") // React app
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +48,8 @@ namespace Project.Lab4.API2
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 

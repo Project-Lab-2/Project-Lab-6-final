@@ -1,0 +1,14 @@
+@Project_Lab_4_API_2_Api_HostAddress = 
+
+GET {{Project_Lab_4_API_2_Api_HostAddress}}/catalog
+Accept: application/json
+
+
+###
+curl --request POST \
+  --url https://dev-0uiksjipuveuhfyy.us.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{"client_id":"76C5UqJeQRQDurzhfWhGUSg3bXH612PS","client_secret":"uD-nFOco41EbnZ9cvTkap9LZ2-XHT-0FF82KJyVaRT2-_-Khi6Y0tZ5cIF5QlUL1","audience":"https://red-fish","grant_type":"client_credentials"}'
+curl --request DELETE \
+  --url https://localhost:7250/catalog/3 \
+  --header 'authorization: Bearer YOUR_ACCESS_TOKEN'

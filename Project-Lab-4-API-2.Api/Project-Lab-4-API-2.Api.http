@@ -1,7 +1,0 @@
-@Project_Lab_4_API_2_Api_HostAddress = http://localhost:5288
-
-GET {{Project_Lab_4_API_2_Api_HostAddress}}/catalog
-Accept: application/json
-
-
-###
